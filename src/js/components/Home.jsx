@@ -1,27 +1,33 @@
 import React, { useEffect, useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
-import { Alert } from "bootstrap";
+
 
 //create your first component
 const Home = () => {
-	let [personajes, setPersonajes] = useState([])
+	const [personajes, setPersonajes] = useState([])
+	const [contador, setContador] = useState("")
 
 	function saludar() {
 		console.log("hola");
 
 	}
 
+
 	useEffect(() => {
 		//va a ejecutar el codigo que nosotros especifiquemos
 		saludar()
-		obtenerInfo()
-		crearUsuario()
-	}, [])
+	}, [contador])
 
 
+	// useEffect(() => {
+	// 	//va a ejecutar el codigo que nosotros especifiquemos
+	// 	saludar() //onload
+	// 	obtenerInfo()
+	// 	crearUsuario()
+	// }, [])
 
+
+	
 
 
 
@@ -60,7 +66,8 @@ const Home = () => {
 		<div className="text-center">
 
 
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
+			<h1 className="text-center mt-5">Hello Rigo! {contador}</h1>
+			<button onClick={()=>setContador(contador+1)}>+</button>
 			<ul>
 				{personajes.map((item)=><li key={item.id}>{item.name}</li>)}
 			</ul>
